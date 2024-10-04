@@ -4,12 +4,13 @@ from werkzeug.security import generate_password_hash
 from app import app, db, User
 import os
 
-
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'gke-file-upload')
+
 
 @app.route('/')
 def index():
     return "Hello, World!"
+
 
 # Route to upload a file to the bucket
 @app.route('/upload-file', methods=['POST'])
@@ -42,13 +43,14 @@ def add_user():
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({'error': 'Email already exists'}), 400
-    
+
     # Add new user
     hashed_password = generate_password_hash(password)
     new_user = User(name=name, email=email, password=hashed_password, phone_no=phone_no)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User added successfully'})
+
 
 # Route to display all users
 @app.route('/get-users', methods=['GET'])
