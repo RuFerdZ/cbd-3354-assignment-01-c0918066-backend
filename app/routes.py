@@ -49,7 +49,7 @@ def add_user():
     return jsonify({'message': 'User added successfully'})
 
 # Route to display all users
-@app.route('/user', methods=['GET'])
+@app.route('/get-users', methods=['GET'])
 def get_users():
     users = User.query.all()
     users_list = []
@@ -59,7 +59,7 @@ def get_users():
 
 
 # Route to display user information by ID
-@app.route('/user/<int:user_id>', methods=['GET'])
+@app.route('/get-user/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = User.query.get(user_id)
     if user is None:
