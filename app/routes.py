@@ -46,3 +46,13 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User added successfully'})
+
+# Route to display all users
+@app.route('/user', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    users_list = []
+    for user in users:
+        users_list.append({'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
+    return jsonify({'users': users_list})
+
