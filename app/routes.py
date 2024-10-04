@@ -31,9 +31,10 @@ def add_user():
     name = request.form['name']
     email = request.form['email']
     password = request.form['password']
+    phone_no = request.form['phone_no']
 
-    if not name or not email or not password:
-        return jsonify({'error': 'Please provide name, email and password'}), 400
+    if not name or not email or not password or not phone_no:
+        return jsonify({'error': 'Please provide name, email, phone_no and password'}), 400
 
     # Check if the email already exists
     existing_user = User.query.filter_by(email=email).first()
@@ -42,7 +43,7 @@ def add_user():
     
     # Add new user
     hashed_password = generate_password_hash(password)
-    new_user = User(name=name, email=email, password=hashed_password)
+    new_user = User(name=name, email=email, password=hashed_password, phone_no=phone_no)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User added successfully'})
