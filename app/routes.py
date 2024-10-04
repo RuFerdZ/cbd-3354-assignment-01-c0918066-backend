@@ -56,3 +56,11 @@ def get_users():
         users_list.append({'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
     return jsonify({'users': users_list})
 
+
+# Route to display user information by ID
+@app.route('/user/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    return jsonify({'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
