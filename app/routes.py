@@ -28,10 +28,12 @@ def upload_blob_from_memory():
 # Route to add a new user
 @app.route('/add-user', methods=['POST'])
 def add_user():
-    name = request.form['name']
-    email = request.form['email']
-    password = request.form['password']
-    phone_no = request.form['phone_no']
+    data = request.get_json()
+
+    name = data.get('name')
+    email = data.get('email')
+    password = data.get('password')
+    phone_no = data.get('phone_no')
 
     if not name or not email or not password or not phone_no:
         return jsonify({'error': 'Please provide name, email, phone_no and password'}), 400
@@ -54,7 +56,7 @@ def get_users():
     users = User.query.all()
     users_list = []
     for user in users:
-        users_list.append({'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
+        users_list.append({'id': user.id, 'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
     return jsonify({'users': users_list})
 
 
@@ -64,4 +66,4 @@ def get_user(user_id):
     user = User.query.get(user_id)
     if user is None:
         return jsonify({'error': 'User not found'}), 404
-    return jsonify({'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
+    return jsonify({'id': user.id, 'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
