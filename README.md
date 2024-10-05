@@ -2,6 +2,8 @@
 
 This is a Flask application that allows users to upload files to Google Cloud Storage, manage user accounts, and interact with a PostgreSQL database.
 
+- Postman Collection: https://api.postman.com/collections/9209211-211041e5-bc9d-4065-9ecd-985816b8769f?access_key=PMAT-01J9DE8N3TFHCSSYJT9GYNA2RM
+
 ## Features
 
 - User registration and management
