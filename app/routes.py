@@ -39,6 +39,10 @@ def add_user():
     if not name or not email or not password or not phone_no:
         return jsonify({'error': 'Please provide name, email, phone_no and password'}), 400
 
+    # check if phone_no has 10 characters
+    if len(phone_no) != 10:
+        return jsonify({'error': 'Phone number should have 10 characters'}), 400
+
     # Check if the email already exists
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
