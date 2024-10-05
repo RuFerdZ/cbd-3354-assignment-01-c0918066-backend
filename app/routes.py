@@ -104,3 +104,14 @@ def update_user(user_id):
     user.phone_no = phone_no
     db.session.commit()
     return jsonify({'message': 'User updated successfully'})
+
+
+# Route to delete user by ID
+@app.route('/delete-user/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': 'User deleted successfully'})
