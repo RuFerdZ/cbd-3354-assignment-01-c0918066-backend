@@ -51,33 +51,20 @@ To run the application locally, use the following command:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-export DB_HOST='
-export DB_NAME='
-export DB_USER='
-export DB_PASSWORD='
-export BUCKET_NAME='
-export GOOGLE_APPLICATION_CREDENTIALS='
+export DB_HOST='<host>'
+export DB_NAME='<db-name>'
+export DB_USER='<db-user>'
+export DB_PASSWORD='<db-password>'
+export BUCKET_NAME='<file-upload-bucket>'
+export GOOGLE_APPLICATION_CREDENTIALS='<access_key.json>'
 python app.py
 ```
 
 ## API Endpoints
 
-### 1. **GET /**
+The application provides the following API endpoints:
 
-- **Description**: Returns a simple greeting message.
-
----
-
-### 2. **POST /upload-file**
-
-- **Description**: Uploads a file to the Google Cloud Storage bucket.
-- **Request Body**:
-    - **Form Data**:
-        - `file`: The file to upload.
-
----
-
-### 3. **POST /add-user**
+### 1. **POST /add-user**
 
 - **Description**: Adds a new user to the database.
 - **Request Body**:
@@ -91,18 +78,76 @@ python app.py
           "phone_no": "1234567890"
       }
       ```
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "message": "User added successfully"
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+          "error": "Email already exists"
+      }
+      ```
 
----
+### 2. **POST /upload-file**
 
-### 4. **GET /get-users**
+- **Description**: Uploads a file to the Google Cloud Storage bucket.
+- **Request Body**:
+    - **Form Data**:
+        - `file`: The file to upload.
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "url": "https://storage.googleapis.com/bucket-name/filename"
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+          "error": "A File is required"
+      }
+      ```
+
+### 3. **GET /get-users**
 
 - **Description**: Retrieves a list of all users.
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "users": [
+              {
+                  "id": 1,
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "phone_no": "1234567890"
+              },
+              ...
+          ]
+      }
+      ```
 
----
-
-### 5. **GET /get-user/<user_id>**
+### 4. **GET /get-user/<user_id>**
 
 - **Description**: Retrieves information for a specific user by their ID.
-
-
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "id": 1,
+          "name": "John Doe",
+          "email": "john@example.com",
+          "phone_no": "1234567890"
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+          "error": "User not found"
+      }
+      ```
 
