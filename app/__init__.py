@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask_cors import CORS
 import secrets
 
 app = Flask(__name__)
+
+CORS(app)  # Enable CORS for all routes
 
 secret_key = secrets.token_hex(16)  # 32 characters (16 bytes)
 
