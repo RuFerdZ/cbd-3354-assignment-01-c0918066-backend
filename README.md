@@ -153,3 +153,46 @@ The application provides the following API endpoints:
       }
       ```
 
+### 5. **PUT /update-user/<user_id>**
+
+- **Description**: Updates information for a specific user by their ID.
+- **Request Body**:
+    - **Content-Type**: `application/json`
+    - **Example**:
+      ```json
+      {
+          "name": "Jane Doe",
+          "email": "jane@example.com",
+          "phone_no": "1234567890"
+      }
+      ```
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "message": "User updated successfully"
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+          "error": "Please provide name, email and phone_no"
+      }
+      ```
+
+### 6. **DELETE /delete-user/<user_id>**
+
+- **Description**: Deletes a specific user by their ID.
+- **Response**:
+    - **Success**:
+      ```json
+      {
+          "message": "User deleted successfully"
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+          "error": "User not found"
+      }
+      ```
