@@ -51,12 +51,12 @@ To run the application locally, use the following command:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-export DB_HOST='
-export DB_NAME='
-export DB_USER='
-export DB_PASSWORD='
-export BUCKET_NAME='
-export GOOGLE_APPLICATION_CREDENTIALS='
+export DB_HOST='<host>'
+export DB_NAME='<db-name>'
+export DB_USER='<db-user>'
+export DB_PASSWORD='<db-password>'
+export BUCKET_NAME='<file-upload-bucket>'
+export GOOGLE_APPLICATION_CREDENTIALS='<access_key.json>'
 python app.py
 ```
 
