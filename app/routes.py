@@ -39,6 +39,10 @@ def add_user():
     if not name or not email or not password or not phone_no:
         return jsonify({'error': 'Please provide name, email, phone_no and password'}), 400
 
+    # check if phone_no has 10 characters
+    if len(phone_no) != 10:
+        return jsonify({'error': 'Phone number should have 10 characters'}), 400
+
     # Check if the email already exists
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
@@ -69,3 +73,45 @@ def get_user(user_id):
     if user is None:
         return jsonify({'error': 'User not found'}), 404
     return jsonify({'id': user.id, 'name': user.name, 'email': user.email, 'phone_no': user.phone_no})
+
+
+# Route to update user information by ID
+@app.route('/update-user/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+
+    data = request.get_json()
+    name = data.get('name')
+    email = data.get('email')
+    phone_no = data.get('phone_no')
+
+    if not name or not email or not phone_no:
+        return jsonify({'error': 'Please provide name, email and phone_no'}), 400
+
+    # check if phone_no has 10 characters
+    if len(phone_no) != 10:
+        return jsonify({'error': 'Phone number should have 10 characters'}), 400
+
+    # Check if the email already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user and existing_user.id != user_id:
+        return jsonify({'error': 'Email already exists'}), 400
+
+    user.name = name
+    user.email = email
+    user.phone_no = phone_no
+    db.session.commit()
+    return jsonify({'message': 'User updated successfully'})
+
+
+# Route to delete user by ID
+@app.route('/delete-user/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({'message': 'User deleted successfully'})
