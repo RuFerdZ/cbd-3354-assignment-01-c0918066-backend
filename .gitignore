@@ -1,4 +1,4 @@
 venv/Lib
 
-access_key.json
+bucket_access_key.json
 gcr_access_key.json

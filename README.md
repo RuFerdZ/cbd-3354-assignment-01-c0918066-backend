@@ -43,7 +43,7 @@ docker run --rm -p 5000:5000 --name backend-app \
   -e DB_USER='c0918066' \
   -e DB_PASSWORD='Test1234' \
   -e BUCKET_NAME='gke-file-upload' \
-  -e GOOGLE_APPLICATION_CREDENTIALS='access_key.json' \
+  -e GOOGLE_APPLICATION_CREDENTIALS='bucket_access_key.json' \
   gcr.io/myfirstapp-72240/backend-app:latest
 ```
 
@@ -58,7 +58,7 @@ export DB_NAME='<db-name>'
 export DB_USER='<db-user>'
 export DB_PASSWORD='<db-password>'
 export BUCKET_NAME='<file-upload-bucket>'
-export GOOGLE_APPLICATION_CREDENTIALS='<access_key.json>'
+export GOOGLE_APPLICATION_CREDENTIALS='<bucket_access_key.json>'
 python app.py
 ```
 
