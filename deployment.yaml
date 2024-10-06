@@ -45,6 +45,6 @@ spec:
                   name: bucket-info
                   key: BUCKET_NAME
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: "access_key.json"
+              value: "bucket_access_key.json"
       imagePullSecrets:
         - name: gcr-json-key
