@@ -1,7 +1,7 @@
 from flask import jsonify, request, url_for, redirect, flash
 from google.cloud import storage
 from werkzeug.security import generate_password_hash
-from app import app, db, User
+from app import app, db, User, Message
 import os
 
 BUCKET_NAME = os.environ.get('BUCKET_NAME', 'gke-file-upload')
@@ -115,3 +115,13 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({'message': 'User deleted successfully'})
+
+
+# Route to get all messages
+@app.route('/get-messages', methods=['GET'])
+def get_messages():
+    messages = Message.query.all()
+    messages_list = []
+    for message in messages:
+        messages_list.append({'id': message.id, 'message': message.message, 'timestamp': message.timestamp})
+    return jsonify({'messages': messages_list})

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: gcr.io/myfirstapp-72240/backend-app:latest
+          image: gcr.io/myfirstapp-72240/backend-subscriber:latest
           ports:
             - containerPort: 5000
           env:
@@ -45,6 +45,6 @@ spec:
                   name: bucket-info
                   key: BUCKET_NAME
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: "bucket_access_key.json"
+              value: "access_key.json"
       imagePullSecrets:
         - name: gcr-json-key
