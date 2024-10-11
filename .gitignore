@@ -2,3 +2,6 @@ venv/Lib
 
 bucket_access_key.json
 gcr_access_key.json
+access_key.json
+app/__pycache__
+.idea
