@@ -12,7 +12,7 @@ metadata:
   namespace: backend
 type: Opaque
 data:
-  DB_PASSWORD: c2VjcmV0LW5hbWU=
+  DB_PASSWORD: bXlwYXNzd29yZA==
 
 
 ---
@@ -23,11 +23,10 @@ metadata:
   name: bucket-info
   namespace: backend
 data:
-    BUCKET_NAME: "my-bucket-name"
-    DB_HOST: "c2VjcmV0LW5hbWU="
-    DB_NAME: "c2VjcmV0LW5hbWU="
-    DB_USER: "c2VjcmV0LW5hbWU="
-    GOOGLE_APPLICATION_CREDENTIALS: "bucket_access_key.json"
+    BUCKET_NAME: "cbd-3354-bucket"
+    DB_HOST: "104.155.137.239"
+    DB_NAME: "myappdb"
+    DB_USER: "myuser"
 
 ---
 
@@ -37,7 +36,7 @@ metadata:
   name: backend-deployment
   namespace: backend
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: backend-app
