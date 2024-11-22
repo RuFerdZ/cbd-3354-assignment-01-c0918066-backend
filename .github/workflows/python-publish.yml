@@ -3,7 +3,7 @@ name: Build and Push to GCR
 on:
   push:
     branches:
-      - main  # Change this to your default branch
+      - main
 
 jobs:
   build:
