@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: backend-app
-          image: gcr.io/myfirstapp-72240/backend-app:latest
+          image: us-central1-docker.pkg.dev/myfirstapp-72240/cbd-3354-ica4-repository/app:latest
           ports:
             - containerPort: 5000
           envFrom:

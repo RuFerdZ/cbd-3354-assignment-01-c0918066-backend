@@ -19,13 +19,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Debug Secrets
-        run: |
-          echo "Project: ${{ secrets.GKE_PROJECT }}"
-          echo "Cluster: ${{ secrets.GKE_CLUSTER }}"
-          echo "Zone: ${{ secrets.GKE_ZONE }}"
-          echo "SA: ${{ secrets.GCP_SA_KEY }}"
-
       # Step 2: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
@@ -37,9 +30,8 @@ jobs:
       # Step 3: Authenticate kubectl with GKE
       - name: Authenticate with GKE
         run: |
-          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} \
-            --zone ${{ secrets.GKE_ZONE }} \
-            --project ${{ secrets.GKE_PROJECT }}
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --zone ${{ secrets.GKE_ZONE }} --project ${{ secrets.GCP_PROJECT_ID
+}}
 
       # Step 4: Build Docker Image
       - name: Build Docker Image
