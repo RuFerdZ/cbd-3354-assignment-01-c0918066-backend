@@ -27,10 +27,9 @@ jobs:
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Debug GCP Authentication
+      - name: Authenticate Docker with Artifact Registry
         run: |
-          gcloud auth list
-          gcloud projects list
+          gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: Authenticate with GKE
         run: |
