@@ -1,3 +1,5 @@
+options:
+   logging: CLOUD_LOGGING_ONLY
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/myfirstapp-72240/ica4-backend:$SHORT_SHA', '.']
