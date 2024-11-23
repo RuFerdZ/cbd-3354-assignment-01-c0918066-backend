@@ -16,7 +16,6 @@ data:
 
 ---
 
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -28,7 +27,6 @@ data:
   DB_USER: "myuser"
 
 ---
-
 
 apiVersion: apps/v1
 kind: Deployment
@@ -57,7 +55,6 @@ spec:
                 name: backend-secrets
       imagePullSecrets:
         - name: gcr-json-key
-
 
 ---
 
