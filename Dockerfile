@@ -18,3 +18,5 @@ EXPOSE 5000
 
 # Step 7: Run the application
 CMD [ "python", "app.py" ]
+
+

@@ -11,7 +11,7 @@ steps:
       - 'image'
       - 'deployment/ica4-backend-deployment'
       - 'ica4-backend=gcr.io/myfirstapp-72240/ica4-backend:$SHORT_SHA'
-      - '--namespace=backend'
+      - '--namespace=ica4-backend'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
       - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER_NAME}'
@@ -19,4 +19,5 @@ images:
   - 'gcr.io/myfirstapp-72240/ica4-backend:$SHORT_SHA'
 substitutions:
   _ZONE: 'us-central1-a'
-  _CLUSTER_NAME: 'my-app-cluster'
+  _CLUSTER_NAME: 'ica4-cluster'
+
