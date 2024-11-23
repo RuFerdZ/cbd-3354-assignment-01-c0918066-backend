@@ -4,3 +4,7 @@ bucket_access_key.json
 gcr_access_key.json
 venv
 .env
+*.xml
+*.iml
+commands
+key.*
