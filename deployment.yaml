@@ -64,7 +64,7 @@ metadata:
   name: assignment-02-backend-service
   namespace: assignment-02-backend
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: assignment-02-backend-app
   ports:
