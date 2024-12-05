@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ica4-backend
+  name: assignment-02-backend
 
 ---
 
 apiVersion: v1
 kind: Secret
 metadata:
-  name: ica4-backend-secrets
-  namespace: ica4-backend
+  name: assignment-02-backend-secrets
+  namespace: assignment-02-backend
 type: Opaque
 data:
   DB_PASSWORD: bXlwYXNzd29yZA==
@@ -19,10 +19,10 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ica4-backend-configmap
-  namespace: ica4-backend
+  name: assignment-02-backend-configmap
+  namespace: assignment-02-backend
 data:
-  DB_HOST: "104.155.137.239"
+  DB_HOST: "34.130.38.87"
   DB_NAME: "myappdb"
   DB_USER: "myuser"
 
@@ -31,28 +31,28 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ica4-backend-deployment
-  namespace: ica4-backend
+  name: assignment-02-backend-deployment
+  namespace: assignment-02-backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ica4-backend-app
+      app: assignment-02-backend-app
   template:
     metadata:
       labels:
-        app: ica4-backend-app
+        app: assignment-02-backend-app
     spec:
       containers:
-        - name: ica4-backend
-          image: gcr.io/myfirstapp-72240/ica4-backend:latest
+        - name: assignment-02-backend
+          image: gcr.io/myfirstapp-72240/assignment-02-backend:latest
           ports:
             - containerPort: 5000
           envFrom:
             - configMapRef:
-                name: ica4-backend-configmap
+                name: assignment-02-backend-configmap
             - secretRef:
-                name: ica4-backend-secrets
+                name: assignment-02-backend-secrets
       imagePullSecrets:
         - name: gcr-json-key
 
@@ -61,12 +61,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ica4-backend-service
-  namespace: ica4-backend
+  name: assignment-02-backend-service
+  namespace: assignment-02-backend
 spec:
   type: ClusterIP
   selector:
-    app: ica4-backend-app
+    app: assignment-02-backend-app
   ports:
     - protocol: TCP
       port: 80
