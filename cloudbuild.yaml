@@ -26,6 +26,6 @@ steps:
 images:
   - 'gcr.io/myfirstapp-72240/assignment-02-backend:$SHORT_SHA'
 substitutions:
-  _ZONE: 'us-central1-a'
+  _ZONE: 'northamerica-northeast2'
   _CLUSTER_NAME: 'assignment-02-cluster'
 
